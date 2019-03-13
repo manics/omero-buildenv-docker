@@ -29,7 +29,7 @@ ENV JAVA_HOME /usr/lib/jvm/jre-1.8.0-openjdk
 RUN yum -q -y install maven
 # Never do this on a non-container system!
 RUN pip install -U \
-    pip \
+    'pip<10' \
     setuptools
 
 WORKDIR /home/omero
