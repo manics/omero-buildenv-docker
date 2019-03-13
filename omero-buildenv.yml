@@ -1,0 +1,41 @@
+---
+
+- hosts: localhost
+  become: yes
+
+  roles:
+
+    - role: openmicroscopy.basedeps
+
+    - role: openmicroscopy.ice
+      ice_version: "3.6"
+      ice_python_wheel: https://github.com/openmicroscopy/zeroc-ice-py-centos7/releases/download/0.0.3/zeroc_ice-3.6.4-cp27-cp27mu-linux_x86_64.whl
+
+    - role: openmicroscopy.java
+      java_jdk_install: True
+
+    - role: openmicroscopy.local-accounts
+      local_accounts_create:
+        - user: omero
+          uid: 1000
+
+    - role: openmicroscopy.omero-python-deps
+
+    - role: openmicroscopy.versioncontrol-utils
+
+    - role: openmicroscopy.postgresql
+      postgresql_version: "9.6"
+      postgresql_install_server: False
+
+  tasks:
+
+    - name: Create or adjust build directory permissions
+      file:
+        path: /home/omero
+        owner: omero
+        group: omero
+        state: directory
+        mode: 0755
+      with_items:
+        - /home/omero
+        - /OMERO

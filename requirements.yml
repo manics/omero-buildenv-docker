@@ -1,0 +1,15 @@
+---
+
+- src: openmicroscopy.basedeps
+
+- src: openmicroscopy.ice
+
+- src: openmicroscopy.java
+
+- src: openmicroscopy.local-accounts
+
+- src: openmicroscopy.omero-python-deps
+
+- src: openmicroscopy.postgresql
+
+- src: openmicroscopy.versioncontrol-utils
